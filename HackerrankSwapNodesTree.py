@@ -9,14 +9,11 @@ class Tree(object):
         if root == None:
             root = TreeNode(1)
         self.root = root
-        data_to_nodes = {1:self.root}
-        #this will be useful in traversing the tree to add nodes
-        #wait maybe not nvmnd will just traverse down tree
-        #will think about it finding each node to add its children each time could be costly
-        #could keep hashmap of data to nodes yeah that will help
+        
 
     def swapNodes(self,k,level_lists):
         #not convinced this will work but might so I'll run it and see
+        #does except for two very large test cases
         levels = [i for i in range(1,len(level_lists)) if (i%k == 0)]
         for level in levels:
             #print("current level")
@@ -33,21 +30,22 @@ class TreeNode(object):
         self.data = data
         self.left = left
         self.right = right
-        #note when populating the tree will actually want to leave left and right as None NOT a node containing none at first will update later 
-
+        
     def printInOrder(self):
-        #node is a treenode
         if self != None and self.data != -1:
             self.left.printInOrder()
             print(self.data),
             self.right.printInOrder()
 
+
 """
-nevermind doing this a different way
-basically for each l_child,r_child pair will find place to add these to
-would be really nice to use a heap for this part, but then is nice to have a tree for the second part
-i suppose i could start by making a heap and then write a method to turn it into a tree 
-"""        
+the below block is constructing our tree given the input
+because the input format is weird with some "holes" so to speak 
+(i.e. we could not just append stuff to a heap and then turn into a tree)
+this is not trivial
+what I do is keep a list of parent_nodes (that is updated as we iterate through each level)
+that I simulateously iterate through as I get user input which dictates the children of these parent nodes
+"""
 t = Tree()
 num_nodes = int(input().strip())
 i = 0
