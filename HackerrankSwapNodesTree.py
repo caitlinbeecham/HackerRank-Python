@@ -1,3 +1,9 @@
+"""
+does problem outlined in https://www.hackerrank.com/challenges/swap-nodes-algo/problem
+works for all but two largest test cases
+still debugging for those but just uploading what I have from doing this this morning
+"""
+
 class Tree(object):
     def __init__(self,root=None,data_to_nodes=None):
         if root == None:
